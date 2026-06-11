@@ -10,11 +10,6 @@ A battery-powered audio amplifier and speaker system with selectable aux and opt
 |---|---|---|
 | ![Front](img/front.jpg) | ![Rear](img/rear.jpg) | ![Interior](img/interior.jpg) |
 
-## Altium and Schematic Photos
-
-| ![](img/altium_1.jpg) |
----
-
 ## Features
 
 - Selectable **aux or optical (solar cell) input** via front-panel switch
@@ -33,12 +28,13 @@ A battery-powered audio amplifier and speaker system with selectable aux and opt
 The aux input and solar cell photodetector are routed through a front-panel switch. Because the solar cell output (~0.35 Vrms) is significantly weaker than the aux input (~0.99 Vrms), a dedicated preamp stage boosts the optical signal before the main amplifier. A high-pass filter follows the preamp to reduce low-frequency noise from the solar cell.
 
 ### Main Amplifier
-The main amplifier uses an op-amp in an inverting topology with a potentiometer in the feedback path for adjustable gain. A 10kΩ volume potentiometer at the input bleeds signal to ground for output level control. Because the op-amp alone cannot supply sufficient current to drive the speaker, a diode-biased BJT push-pull output stage provides the needed current gain. Diode biasing of the transistor pair reduces crossover distortion while keeping quiescent current low for efficiency.
+The main amplifier uses an op-amp in an inverting topology with a potentiometer in the feedback path for adjustable gain. A 10kΩ volume potentiometer at the input bleeds signal to ground for output level control. Because the op-amp alone cannot supply sufficient current to drive the speaker, a diode-biased BJT push-pull output stage provides the needed current gain. Diode biasing of the transistor pair reduces crossover distortion while keeping quiescent current low (~2 mA) for efficiency.
 
 ### Laser Output Stage
 The selected input is buffered through a voltage follower for isolation, then fed into a non-inverting summing amplifier that introduces a DC bias required for laser diode modulation. Both laser outputs share this stage but are driven through separate current-limiting resistor paths.
 
-[Design Review Video](https://youtu.be/YMSiEr61HQ0)
+## [Design Review Video](https://youtu.be/YMSiEr61HQ0)
+
 ---
 
 ## Hardware Summary
@@ -61,4 +57,5 @@ The selected input is buffered through a voltage follower for isolation, then fe
 ├── altium/        # Altium Designer schematic and PCB project files
 ├── fusion360/     # Fusion 360 enclosure design files
 └── img/           # Project photos
+└── pdf            # Project presentation
 ```

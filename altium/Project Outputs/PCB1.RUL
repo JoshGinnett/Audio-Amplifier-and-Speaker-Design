@@ -1,0 +1,6 @@
+DRC Rules Export File for PCB: C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc
+RuleKind=MinimumAnnularRing|RuleName=MinimumAnnularRing|Scope=Board|Minimum=10.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=10.00
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=10.00
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=10.00

@@ -1,0 +1,432 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 { 
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body { 
+			font-family : segoe ui;
+		}
+
+		td, th {  
+			padding: 0.5em;
+			text-align : left;
+		}
+		th { 
+			background-color : #EEEEEE;
+		
+		}
+		th.column1, td.column1 { 
+			width : 50%; 
+		}
+
+        th.column2, td.column2 {
+            width : 25%;
+        }
+
+		table { 
+			width : 100%; 
+            font-size: 0.9em;
+		}
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 5em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error { 
+			color : red;
+			font-weight : bold;
+		}	
+		tr.onmouseout_odd { 
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+			
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);		
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {	
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}	
+	</script><title>Footprint Comparison Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Footprint Comparison Report</h1>
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10/30/2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">6:04:13 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc" class="file"><acronym title="C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc">C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table><a name="IDXR5C4V3DHABXMYGOI5TTFZBWL0C3NKG4MC2AVCQEQOJ4SG0PBCN"><h2>Contents</h2></a><p class="contents_level1"><a href="#IDXR5C4V3DHABXMYGOI5TTFZBWL0C3NKG4MC2AVCQEQOJ4SG0PBCN">Contents</a></p>
+<p class="contents_level1"><a href="#IDKDG3E1JIBR4BHZBBYQJ3HH3ACGWA2IQ0VRWEMYCLOFPDZSDH2B3P">Components Status Summary</a></p>
+<p class="contents_level2"><a href="#IDRUU52DAQQJWQMP14YCITNUKINKU54KUOEN2YHNHYSVAHEEG1WHXM">Matched Components List<br></a></p>
+<p class="contents_level2"><a href="#IDVVL5CDOSRRPUNXHYVKUBZIMF1LNZWSHTACNNIRKJON0RJF3VXICE">Missing PCB Components List<br></a></p><br><a name="IDKDG3E1JIBR4BHZBBYQJ3HH3ACGWA2IQ0VRWEMYCLOFPDZSDH2B3P"><h2>Components Status Summary</h2></a><h2>Matched Components List</h2><a name="IDRUU52DAQQJWQMP14YCITNUKINKU54KUOEN2YHNHYSVAHEEG1WHXM"><table>
+<tr>
+<th class="column1">Designator</th>
+<th class="column2">Footprint</th>
+<th class="column3">Footprint reference</th>
+<th class="column4">Footprint to reference Library</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">C1</td>
+<td style="Width:20%" class="column2">WCAP-ATG8_5X11(DXL)</td>
+<td style="Width:20%" class="column3">WCAP-ATG8_5X11(DXL)</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">C2</td>
+<td style="Width:20%" class="column2">WCAP-ATG8_5X11(DXL)</td>
+<td style="Width:20%" class="column3">WCAP-ATG8_5X11(DXL)</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">C3</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">C4</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">C5</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">C6</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">C7</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">C8</td>
+<td style="Width:20%" class="column2">WCAP-ATG8_5X11(DXL)</td>
+<td style="Width:20%" class="column3">WCAP-ATG8_5X11(DXL)</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">C9</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">C10</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">C11</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">C12</td>
+<td style="Width:20%" class="column2">CAPC3216X180N</td>
+<td style="Width:20%" class="column3">CAPC3216X180N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">D1</td>
+<td style="Width:20%" class="column2">SOD3715X135N</td>
+<td style="Width:20%" class="column3">SOD3715X135N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">D2</td>
+<td style="Width:20%" class="column2">SOD3715X135N</td>
+<td style="Width:20%" class="column3">SOD3715X135N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R1</td>
+<td style="Width:20%" class="column2">RESAD1100W55L680D260</td>
+<td style="Width:20%" class="column3">RESAD1100W55L680D260</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R2</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R3</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R4</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R5</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R6</td>
+<td style="Width:20%" class="column2">RESAD1100W55L680D260</td>
+<td style="Width:20%" class="column3">RESAD1100W55L680D260</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R7</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R8</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R9</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R10</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R11</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R12</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R13</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R14</td>
+<td style="Width:20%" class="column2">RESAD1100W55L680D260</td>
+<td style="Width:20%" class="column3">RESAD1100W55L680D260</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R15</td>
+<td style="Width:20%" class="column2">RESAD1100W55L680D260</td>
+<td style="Width:20%" class="column3">RESAD1100W55L680D260</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">R16</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">R17</td>
+<td style="Width:20%" class="column2">RESC3216X70N</td>
+<td style="Width:20%" class="column3">RESC3216X70N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">T1</td>
+<td style="Width:20%" class="column2">BD139-TO</td>
+<td style="Width:20%" class="column3">BD139-TO</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">U1</td>
+<td style="Width:20%" class="column2">DIP794W45P254L959H508Q8</td>
+<td style="Width:20%" class="column3">DIP794W45P254L959H508Q8</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">U2</td>
+<td style="Width:20%" class="column2">SOIC127P780X200-8N</td>
+<td style="Width:20%" class="column3">SOIC127P780X200-8N</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">U3</td>
+<td style="Width:20%" class="column2">DIP794W45P254L959H508Q8</td>
+<td style="Width:20%" class="column3">DIP794W45P254L959H508Q8</td>
+<td style="Width:60%" class="column4">Josh Ginnett</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><h2>Missing PCB Components List</h2><a name="IDVVL5CDOSRRPUNXHYVKUBZIMF1LNZWSHTACNNIRKJON0RJF3VXICE"><table>
+<tr>
+<th class="column1">Designator</th>
+<th class="column2">Footprint</th>
+<th class="column3">Footprint reference</th>
+<th class="column4">Path to reference Library</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Q1</td>
+<td style="Width:20%" class="column2"></td>
+<td style="Width:20%" class="column3"></td>
+<td style="Width:60%" class="column4">&lt;Footprint not found&gt;</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

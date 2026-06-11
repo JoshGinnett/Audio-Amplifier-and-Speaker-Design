@@ -1,0 +1,587 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10/31/2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:37:58 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc" class="file"><acronym title="C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc">C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">77</td></tr>
+</table>
+</td>
+</table><a name="IDVQOYNZBQYNEZLZQNR1APST0WJV0DIHSLL24BPG1ZME1KCFTHI"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDN4NWXOQBSWE2TMR3CYZKJHCRHJXBAM15KCLCNJBHMMK5F2FCVZJ">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCXKBDKRS0NBFFX4ZC1R5EKG1CBUZJYHXCS3ME1CTSHUNL5VBBC5M">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0NM4ZHTEWIOVNJLFCMFC5WPKFOXFXUHQRKHL1KOUPTABWTBCZSXL">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">44</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBU1ZEOXUZ25ULWKD4PNXZKOUXC5IR0VFAOOQ0CGNN1C1ODLKGYCJ">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAHRMEQF3BSZ4BV5D2DNNVM1UROQJZCRKXJDMO4DLHWQ2Q3D3G0GJ">Width Constraint (Min=0.254mm) (Max=0.508mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBQNAWK4KOPLBHQAJWEQFXIHD1LZCVT2H3GFR5UMRMWJYV01VPW2H">Routing Layers(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYQCT3J5PMI0UCJ3ALXI5YGSKEJXT2IVXACH3TTOJ21XWBBAUAPRF">Routing Via (MinHoleWidth=0.254mm) (MaxHoleWidth=0.254mm) (PreferredHoleWidth=0.254mm) (MinWidth=0.508mm) (MaxWidth=0.508mm) (PreferedWidth=0.508mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIWRA50T1YBEUC5WBJGZKQZHWSBGWM4VQEQG4L3B4D0UKUS2MV4VO">Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.254mm) (Max=0.254mm) (Prefered=0.254mm)  and Width Constraints (Min=0.254mm) (Max=0.254mm) (Prefered=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGVPT4AMBVXGENVCRFIVAQTAREH3XNRO1Z5SGI2HWZXOOY2ECFI">SMD Neck-Down Constraint (Percent=100%) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKXQPLHFVIFRCDM1QQ2LUGASLWBO21OMAYXCKVSNXQXQOZ4LKICXD">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEHXATLAU0PKPOAJSWDNWZ0MCZJN4LRCTNUJKT5HSAVJEBK50WKU">Minimum Annular Ring (Minimum=0.254mm) (All)</a></td>
+<td class="column2">24</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYQEQ4LR0VSS3ILGJWIAA1MSTTFDUSIGZBSHCS3DM0XUFCFWTG32I">Hole Size Constraint (Min=0.254mm) (Max=7.62mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAXZKPBPZ3DD5MEZSPLTYTIC2BIKLH1L3FGBKXKCN2NX1AE3Y4FGB">Pads and Vias to follow the Drill pairs settings</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGKWRCAZQOPHQIKTQRMORRJJXBIW2PMOGUYHYOKRP1FSED1IYOU">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMPEAV2WQ4K5OPOKWK2C04FTKVNC5W5NSSGROZRMS2CLNQSWRSSFB">Minimum Solder Mask Sliver (Gap=0.5mm) (All),(All)</a></td>
+<td class="column2">9</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1TEYAWEI3IFLPF2LSNJDHK2E1GVNEZIL40Y1QHOTMWFW5FOVKPTM">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3K4SIWMY3WFDGLWVTFMABIAIQPYLBPE5LXLJ053QA5FPVHDLJZG">Component Clearance Constraint ( Horizontal Gap = 0.254mm, Vertical Gap = 0.254mm ) (All),(All) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOWMVWQPVGNWRIDUVJMFJT3VZECJL23UCXTBZJL40JFKOW2RQG4O">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">77</td>
+</tr>
+</table><br><a name="ID0NM4ZHTEWIOVNJLFCMFC5WPKFOXFXUHQRKHL1KOUPTABWTBCZSXL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8991.306mil|Location2.X=9001.306mil|Location1.Y=6293.65mil|Location2.Y=6329.575mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8991.306mil|Location2.X=9001.306mil|Location1.Y=6293.65mil|Location2.Y=6329.575mil|Absolute=True">Un-Routed Net Constraint: Track (38.921mm,47.54mm)(38.921mm,48.198mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8991.306mil|Location2.X=9018.213mil|Location1.Y=6276.739mil|Location2.Y=6303.65mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8991.306mil|Location2.X=9018.213mil|Location1.Y=6276.739mil|Location2.Y=6303.65mil|Absolute=True">Un-Routed Net Constraint: Track (38.921mm,47.54mm)(39.35mm,47.11mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8991.306mil|Location2.X=9004.927mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8991.306mil|Location2.X=9004.927mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True">Un-Routed Net Constraint: Track (38.921mm,50.034mm)(39.013mm,50.034mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8994.927mil|Location2.X=9010.406mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8994.927mil|Location2.X=9010.406mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True">Un-Routed Net Constraint: Track (39.013mm,50.034mm)(39.152mm,50.034mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9000.406mil|Location2.X=9012.275mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9000.406mil|Location2.X=9012.275mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True">Un-Routed Net Constraint: Track (39.152mm,50.034mm)(39.199mm,50.034mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9002.275mil|Location2.X=9039.371mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9002.275mil|Location2.X=9039.371mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True">Un-Routed Net Constraint: Track (39.199mm,50.034mm)(39.887mm,50.034mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9008.213mil|Location2.X=9024.919mil|Location1.Y=6276.739mil|Location2.Y=6286.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9008.213mil|Location2.X=9024.919mil|Location1.Y=6276.739mil|Location2.Y=6286.739mil|Absolute=True">Un-Routed Net Constraint: Track (39.35mm,47.11mm)(39.52mm,47.11mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9014.919mil|Location2.X=9039.371mil|Location1.Y=6276.739mil|Location2.Y=6286.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9014.919mil|Location2.X=9039.371mil|Location1.Y=6276.739mil|Location2.Y=6286.739mil|Absolute=True">Un-Routed Net Constraint: Track (39.52mm,47.11mm)(39.887mm,47.11mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9029.371mil|Location2.X=9045.229mil|Location1.Y=6276.739mil|Location2.Y=6292.597mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9029.371mil|Location2.X=9045.229mil|Location1.Y=6276.739mil|Location2.Y=6292.597mil|Absolute=True">Un-Routed Net Constraint: Track (39.887mm,47.11mm)(40.036mm,47.259mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9029.371mil|Location2.X=9045.229mil|Location1.Y=6385.981mil|Location2.Y=6401.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9029.371mil|Location2.X=9045.229mil|Location1.Y=6385.981mil|Location2.Y=6401.84mil|Absolute=True">Un-Routed Net Constraint: Track (39.887mm,50.034mm)(40.036mm,49.885mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9029.371mil|Location2.X=9080.242mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9029.371mil|Location2.X=9080.242mil|Location1.Y=6391.84mil|Location2.Y=6401.84mil|Absolute=True">Un-Routed Net Constraint: Track (39.887mm,50.034mm)(40.926mm,50.034mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9035.229mil|Location2.X=9045.229mil|Location1.Y=6282.597mil|Location2.Y=6395.981mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9035.229mil|Location2.X=9045.229mil|Location1.Y=6282.597mil|Location2.Y=6395.981mil|Absolute=True">Un-Routed Net Constraint: Track (40.036mm,47.259mm)(40.036mm,49.885mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9090.894mil|Location2.X=9100.894mil|Location1.Y=6289.959mil|Location2.Y=6382.369mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9090.894mil|Location2.X=9100.894mil|Location1.Y=6289.959mil|Location2.Y=6382.369mil|Absolute=True">Un-Routed Net Constraint: Track (41.45mm,47.446mm)(41.45mm,49.539mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9090.894mil|Location2.X=9117.342mil|Location1.Y=6273.511mil|Location2.Y=6299.959mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9090.894mil|Location2.X=9117.342mil|Location1.Y=6273.511mil|Location2.Y=6299.959mil|Absolute=True">Un-Routed Net Constraint: Track (41.45mm,47.446mm)(41.868mm,47.028mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9090.894mil|Location2.X=9123.513mil|Location1.Y=6372.369mil|Location2.Y=6404.988mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9090.894mil|Location2.X=9123.513mil|Location1.Y=6372.369mil|Location2.Y=6404.988mil|Absolute=True">Un-Routed Net Constraint: Track (41.45mm,49.539mm)(42.025mm,50.114mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9107.342mil|Location2.X=9120.059mil|Location1.Y=6270.796mil|Location2.Y=6283.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9107.342mil|Location2.X=9120.059mil|Location1.Y=6270.796mil|Location2.Y=6283.511mil|Absolute=True">Un-Routed Net Constraint: Track (41.868mm,47.028mm)(41.937mm,46.959mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9110.059mil|Location2.X=9159.453mil|Location1.Y=6270.796mil|Location2.Y=6280.796mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9110.059mil|Location2.X=9159.453mil|Location1.Y=6270.796mil|Location2.Y=6280.796mil|Absolute=True">Un-Routed Net Constraint: Track (41.937mm,46.959mm)(42.938mm,46.959mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9113.513mil|Location2.X=9158.378mil|Location1.Y=6394.988mil|Location2.Y=6404.988mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9113.513mil|Location2.X=9158.378mil|Location1.Y=6394.988mil|Location2.Y=6404.988mil|Absolute=True">Un-Routed Net Constraint: Track (42.025mm,50.114mm)(42.91mm,50.114mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9120.701mil|Location2.X=9159.453mil|Location1.Y=6313.354mil|Location2.Y=6323.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9120.701mil|Location2.X=9159.453mil|Location1.Y=6313.354mil|Location2.Y=6323.354mil|Absolute=True">Un-Routed Net Constraint: Track (42.207mm,48.04mm)(42.938mm,48.04mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9149.453mil|Location2.X=9165.311mil|Location1.Y=6270.796mil|Location2.Y=6286.654mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9149.453mil|Location2.X=9165.311mil|Location1.Y=6270.796mil|Location2.Y=6286.654mil|Absolute=True">Un-Routed Net Constraint: Track (42.938mm,46.959mm)(43.086mm,47.108mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9149.453mil|Location2.X=9165.311mil|Location1.Y=6307.495mil|Location2.Y=6323.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9149.453mil|Location2.X=9165.311mil|Location1.Y=6307.495mil|Location2.Y=6323.354mil|Absolute=True">Un-Routed Net Constraint: Track (42.938mm,48.04mm)(43.086mm,47.892mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9155.311mil|Location2.X=9165.311mil|Location1.Y=6276.654mil|Location2.Y=6317.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9155.311mil|Location2.X=9165.311mil|Location1.Y=6276.654mil|Location2.Y=6317.495mil|Absolute=True">Un-Routed Net Constraint: Track (43.086mm,47.108mm)(43.086mm,47.892mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9164.479mil|Location2.X=9190.285mil|Location1.Y=6254.673mil|Location2.Y=6280.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9164.479mil|Location2.X=9190.285mil|Location1.Y=6254.673mil|Location2.Y=6280.48mil|Absolute=True">Un-Routed Net Constraint: Track (43.319mm,46.55mm)(43.721mm,46.951mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9180.285mil|Location2.X=9192.151mil|Location1.Y=6270.48mil|Location2.Y=6280.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9180.285mil|Location2.X=9192.151mil|Location1.Y=6270.48mil|Location2.Y=6280.48mil|Absolute=True">Un-Routed Net Constraint: Track (43.721mm,46.951mm)(43.768mm,46.951mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9204.858mil|Location2.X=9214.858mil|Location1.Y=6276.337mil|Location2.Y=6308.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9204.858mil|Location2.X=9214.858mil|Location1.Y=6276.337mil|Location2.Y=6308.984mil|Absolute=True">Un-Routed Net Constraint: Track (44.345mm,47.1mm)(44.345mm,47.675mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9204.858mil|Location2.X=9220.716mil|Location1.Y=6270.48mil|Location2.Y=6286.337mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9204.858mil|Location2.X=9220.716mil|Location1.Y=6270.48mil|Location2.Y=6286.337mil|Absolute=True">Un-Routed Net Constraint: Track (44.345mm,47.1mm)(44.494mm,46.951mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9204.858mil|Location2.X=9288.017mil|Location1.Y=6298.984mil|Location2.Y=6382.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9204.858mil|Location2.X=9288.017mil|Location1.Y=6298.984mil|Location2.Y=6382.144mil|Absolute=True">Un-Routed Net Constraint: Track (44.345mm,47.675mm)(46.203mm,49.534mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9206.363mil|Location2.X=9282.159mil|Location1.Y=6394.673mil|Location2.Y=6404.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9206.363mil|Location2.X=9282.159mil|Location1.Y=6394.673mil|Location2.Y=6404.673mil|Absolute=True">Un-Routed Net Constraint: Track (44.383mm,50.106mm)(46.054mm,50.106mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9210.716mil|Location2.X=9288.017mil|Location1.Y=6270.48mil|Location2.Y=6280.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9210.716mil|Location2.X=9288.017mil|Location1.Y=6270.48mil|Location2.Y=6280.48mil|Absolute=True">Un-Routed Net Constraint: Track (44.494mm,46.951mm)(46.203mm,46.951mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9272.159mil|Location2.X=9288.017mil|Location1.Y=6388.815mil|Location2.Y=6404.673mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9272.159mil|Location2.X=9288.017mil|Location1.Y=6388.815mil|Location2.Y=6404.673mil|Absolute=True">Un-Routed Net Constraint: Track (46.054mm,50.106mm)(46.203mm,49.957mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9278.017mil|Location2.X=9288.017mil|Location1.Y=6372.144mil|Location2.Y=6398.815mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9278.017mil|Location2.X=9288.017mil|Location1.Y=6372.144mil|Location2.Y=6398.815mil|Absolute=True">Un-Routed Net Constraint: Track (46.203mm,49.534mm)(46.203mm,49.957mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9314.362mil|Location1.Y=6348.38mil|Location2.Y=6365.319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9314.362mil|Location1.Y=6348.38mil|Location2.Y=6365.319mil|Absolute=True">Un-Routed Net Constraint: Track (46.872mm,48.93mm)(46.872mm,49.106mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9324.19mil|Location1.Y=6338.551mil|Location2.Y=6358.38mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9324.19mil|Location1.Y=6338.551mil|Location2.Y=6358.38mil|Absolute=True">Un-Routed Net Constraint: Track (46.872mm,48.93mm)(47.122mm,48.68mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9314.362mil|Location1.Y=6355.319mil|Location2.Y=6395.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9314.362mil|Location1.Y=6355.319mil|Location2.Y=6395.604mil|Absolute=True">Un-Routed Net Constraint: Track (46.872mm,49.106mm)(46.872mm,49.876mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9326.7mil|Location1.Y=6385.604mil|Location2.Y=6407.941mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9304.362mil|Location2.X=9326.7mil|Location1.Y=6385.604mil|Location2.Y=6407.941mil|Absolute=True">Un-Routed Net Constraint: Track (46.872mm,49.876mm)(47.186mm,50.189mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9311.481mil|Location2.X=9375.734mil|Location1.Y=6270.48mil|Location2.Y=6280.48mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9311.481mil|Location2.X=9375.734mil|Location1.Y=6270.48mil|Location2.Y=6280.48mil|Absolute=True">Un-Routed Net Constraint: Track (47.053mm,46.951mm)(48.431mm,46.951mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9314.19mil|Location2.X=9339.141mil|Location1.Y=6338.551mil|Location2.Y=6348.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9314.19mil|Location2.X=9339.141mil|Location1.Y=6338.551mil|Location2.Y=6348.551mil|Absolute=True">Un-Routed Net Constraint: Track (47.122mm,48.68mm)(47.502mm,48.68mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9316.7mil|Location2.X=9389.858mil|Location1.Y=6397.941mil|Location2.Y=6407.941mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9316.7mil|Location2.X=9389.858mil|Location1.Y=6397.941mil|Location2.Y=6407.941mil|Absolute=True">Un-Routed Net Constraint: Track (47.186mm,50.189mm)(48.79mm,50.189mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9329.141mil|Location2.X=9369.048mil|Location1.Y=6338.551mil|Location2.Y=6348.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9329.141mil|Location2.X=9369.048mil|Location1.Y=6338.551mil|Location2.Y=6348.551mil|Absolute=True">Un-Routed Net Constraint: Track (47.502mm,48.68mm)(48.261mm,48.68mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9359.048mil|Location2.X=9383.103mil|Location1.Y=6324.495mil|Location2.Y=6348.551mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9359.048mil|Location2.X=9383.103mil|Location1.Y=6324.495mil|Location2.Y=6348.551mil|Absolute=True">Un-Routed Net Constraint: Track (48.261mm,48.68mm)(48.618mm,48.323mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9365.734mil|Location2.X=9389.858mil|Location1.Y=6270.48mil|Location2.Y=6294.604mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9365.734mil|Location2.X=9389.858mil|Location1.Y=6270.48mil|Location2.Y=6294.604mil|Absolute=True">Un-Routed Net Constraint: Track (48.431mm,46.951mm)(48.79mm,47.31mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9373.103mil|Location2.X=9383.999mil|Location1.Y=6324.495mil|Location2.Y=6334.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9373.103mil|Location2.X=9383.999mil|Location1.Y=6324.495mil|Location2.Y=6334.495mil|Absolute=True">Un-Routed Net Constraint: Track (48.618mm,48.323mm)(48.641mm,48.323mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9373.999mil|Location2.X=9389.858mil|Location1.Y=6318.637mil|Location2.Y=6334.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9373.999mil|Location2.X=9389.858mil|Location1.Y=6318.637mil|Location2.Y=6334.495mil|Absolute=True">Un-Routed Net Constraint: Track (48.641mm,48.323mm)(48.79mm,48.175mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9379.858mil|Location2.X=9389.858mil|Location1.Y=6284.604mil|Location2.Y=6328.637mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9379.858mil|Location2.X=9389.858mil|Location1.Y=6284.604mil|Location2.Y=6328.637mil|Absolute=True">Un-Routed Net Constraint: Track (48.79mm,47.31mm)(48.79mm,48.175mm) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEHXATLAU0PKPOAJSWDNWZ0MCZJN4LRCTNUJKT5HSAVJEBK50WKU"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Annular Ring (Minimum=0.254mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11703.375mil|Location2.X=11714.625mil|Location1.Y=6142.596mil|Location2.Y=6153.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11703.375mil|Location2.X=11714.625mil|Location1.Y=6142.596mil|Location2.Y=6153.846mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R1-1(107.823mm,43.219mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11703.375mil|Location2.X=11714.625mil|Location1.Y=5709.526mil|Location2.Y=5720.776mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11703.375mil|Location2.X=11714.625mil|Location1.Y=5709.526mil|Location2.Y=5720.776mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R1-2(107.823mm,32.219mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10603.355mil|Location2.X=10614.605mil|Location1.Y=6080.028mil|Location2.Y=6091.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10603.355mil|Location2.X=10614.605mil|Location1.Y=6080.028mil|Location2.Y=6091.278mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R14-1(79.882mm,41.63mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10170.285mil|Location2.X=10181.535mil|Location1.Y=6080.028mil|Location2.Y=6091.278mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10170.285mil|Location2.X=10181.535mil|Location1.Y=6080.028mil|Location2.Y=6091.278mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R14-2(68.883mm,41.63mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10186.231mil|Location2.X=10197.481mil|Location1.Y=5837.92mil|Location2.Y=5849.17mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10186.231mil|Location2.X=10197.481mil|Location1.Y=5837.92mil|Location2.Y=5849.17mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R15-1(69.288mm,35.48mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10619.301mil|Location2.X=10630.551mil|Location1.Y=5837.92mil|Location2.Y=5849.17mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10619.301mil|Location2.X=10630.551mil|Location1.Y=5837.92mil|Location2.Y=5849.17mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R15-2(80.288mm,35.48mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11788.343mil|Location2.X=11799.593mil|Location1.Y=4744.88mil|Location2.Y=4756.13mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11788.343mil|Location2.X=11799.593mil|Location1.Y=4744.88mil|Location2.Y=4756.13mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R6-1(109.981mm,7.717mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11788.343mil|Location2.X=11799.593mil|Location1.Y=5177.95mil|Location2.Y=5189.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11788.343mil|Location2.X=11799.593mil|Location1.Y=5177.95mil|Location2.Y=5189.2mil|Absolute=True">Minimum Annular Ring: (0.2mm &lt; 0.254mm) Pad R6-2(109.981mm,18.717mm) on Multi-Layer (Annular Ring=0.2mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11081.387mil|Location2.X=11092.637mil|Location1.Y=5580.941mil|Location2.Y=5592.191mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11081.387mil|Location2.X=11092.637mil|Location1.Y=5580.941mil|Location2.Y=5592.191mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-1(92.502mm,29.453mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11100.186mil|Location2.X=11111.436mil|Location1.Y=5499.741mil|Location2.Y=5510.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11100.186mil|Location2.X=11111.436mil|Location1.Y=5499.741mil|Location2.Y=5510.991mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-2(92.502mm,26.913mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11100.186mil|Location2.X=11111.436mil|Location1.Y=5399.741mil|Location2.Y=5410.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11100.186mil|Location2.X=11111.436mil|Location1.Y=5399.741mil|Location2.Y=5410.991mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-3(92.502mm,24.373mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11100.186mil|Location2.X=11111.436mil|Location1.Y=5299.741mil|Location2.Y=5310.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11100.186mil|Location2.X=11111.436mil|Location1.Y=5299.741mil|Location2.Y=5310.991mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-4(92.502mm,21.833mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5299.741mil|Location2.Y=5310.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5299.741mil|Location2.Y=5310.991mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-5(100.442mm,21.833mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5399.741mil|Location2.Y=5410.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5399.741mil|Location2.Y=5410.991mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-6(100.442mm,24.373mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5499.741mil|Location2.Y=5510.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5499.741mil|Location2.Y=5510.991mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-7(100.442mm,26.913mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5599.741mil|Location2.Y=5610.991mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11412.784mil|Location2.X=11424.034mil|Location1.Y=5599.741mil|Location2.Y=5610.991mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U1-8(100.442mm,29.453mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9849.812mil|Location2.X=9861.062mil|Location1.Y=5280.115mil|Location2.Y=5291.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9849.812mil|Location2.X=9861.062mil|Location1.Y=5280.115mil|Location2.Y=5291.365mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-1(61.22mm,21.812mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9868.611mil|Location2.X=9879.861mil|Location1.Y=5198.914mil|Location2.Y=5210.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9868.611mil|Location2.X=9879.861mil|Location1.Y=5198.914mil|Location2.Y=5210.164mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-2(61.22mm,19.272mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9868.611mil|Location2.X=9879.861mil|Location1.Y=5098.914mil|Location2.Y=5110.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9868.611mil|Location2.X=9879.861mil|Location1.Y=5098.914mil|Location2.Y=5110.164mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-3(61.22mm,16.732mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9868.611mil|Location2.X=9879.861mil|Location1.Y=4998.914mil|Location2.Y=5010.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9868.611mil|Location2.X=9879.861mil|Location1.Y=4998.914mil|Location2.Y=5010.164mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-4(61.22mm,14.192mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=4998.914mil|Location2.Y=5010.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=4998.914mil|Location2.Y=5010.164mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-5(69.16mm,14.192mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=5098.914mil|Location2.Y=5110.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=5098.914mil|Location2.Y=5110.164mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-6(69.16mm,16.732mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=5198.914mil|Location2.Y=5210.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=5198.914mil|Location2.Y=5210.164mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-7(69.16mm,19.272mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=5298.914mil|Location2.Y=5310.164mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10181.211mil|Location2.X=10192.461mil|Location1.Y=5298.914mil|Location2.Y=5310.164mil|Absolute=True">Minimum Annular Ring: (0.175mm &lt; 0.254mm) Pad U3-8(69.16mm,21.812mm) on Multi-Layer (Annular Ring=0.175mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDMPEAV2WQ4K5OPOKWK2C04FTKVNC5W5NSSGROZRMS2CLNQSWRSSFB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.5mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10383.532mil|Location2.X=10404.467mil|Location1.Y=5423.382mil|Location2.Y=5444.318mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10383.532mil|Location2.X=10404.467mil|Location1.Y=5423.382mil|Location2.Y=5444.318mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.488mm &lt; 0.5mm) Between Pad C1-1(73.422mm,25.574mm) on Multi-Layer And Pad C1-2(75.422mm,25.574mm) on Multi-Layer [Top Solder] Mask Sliver [0.488mm] / [Bottom Solder] Mask Sliver [0.488mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10676.8mil|Location2.X=10697.735mil|Location1.Y=5423.382mil|Location2.Y=5444.318mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10676.8mil|Location2.X=10697.735mil|Location1.Y=5423.382mil|Location2.Y=5444.318mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.488mm &lt; 0.5mm) Between Pad C2-1(80.871mm,25.574mm) on Multi-Layer And Pad C2-2(82.871mm,25.574mm) on Multi-Layer [Top Solder] Mask Sliver [0.488mm] / [Bottom Solder] Mask Sliver [0.488mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10944.163mil|Location2.X=10965.098mil|Location1.Y=5941.533mil|Location2.Y=5962.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10944.163mil|Location2.X=10965.098mil|Location1.Y=5941.533mil|Location2.Y=5962.468mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.488mm &lt; 0.5mm) Between Pad C8-1(87.662mm,38.735mm) on Multi-Layer And Pad C8-2(89.662mm,38.735mm) on Multi-Layer [Top Solder] Mask Sliver [0.488mm] / [Bottom Solder] Mask Sliver [0.488mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10719.822mil|Location2.X=10740.757mil|Location1.Y=4966.848mil|Location2.Y=4987.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10719.822mil|Location2.X=10740.757mil|Location1.Y=4966.848mil|Location2.Y=4987.783mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.152mm &lt; 0.5mm) Between Pad U2-1(83.868mm,13.343mm) on Top Layer And Pad U2-2(83.868mm,14.613mm) on Top Layer [Top Solder] Mask Sliver [0.152mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10791.022mil|Location2.X=10811.957mil|Location1.Y=5016.848mil|Location2.Y=5037.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10791.022mil|Location2.X=10811.957mil|Location1.Y=5016.848mil|Location2.Y=5037.783mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.152mm &lt; 0.5mm) Between Pad U2-2(83.868mm,14.613mm) on Top Layer And Pad U2-3(83.868mm,15.883mm) on Top Layer [Top Solder] Mask Sliver [0.152mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10791.022mil|Location2.X=10811.957mil|Location1.Y=5066.848mil|Location2.Y=5087.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10791.022mil|Location2.X=10811.957mil|Location1.Y=5066.848mil|Location2.Y=5087.783mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.152mm &lt; 0.5mm) Between Pad U2-3(83.868mm,15.883mm) on Top Layer And Pad U2-4(83.868mm,17.153mm) on Top Layer [Top Solder] Mask Sliver [0.152mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10443.838mil|Location2.X=10464.773mil|Location1.Y=5066.848mil|Location2.Y=5087.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10443.838mil|Location2.X=10464.773mil|Location1.Y=5066.848mil|Location2.Y=5087.783mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.152mm &lt; 0.5mm) Between Pad U2-5(76.858mm,17.153mm) on Top Layer And Pad U2-6(76.858mm,15.883mm) on Top Layer [Top Solder] Mask Sliver [0.152mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10515.038mil|Location2.X=10535.973mil|Location1.Y=5016.848mil|Location2.Y=5037.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10515.038mil|Location2.X=10535.973mil|Location1.Y=5016.848mil|Location2.Y=5037.783mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.152mm &lt; 0.5mm) Between Pad U2-6(76.858mm,15.883mm) on Top Layer And Pad U2-7(76.858mm,14.613mm) on Top Layer [Top Solder] Mask Sliver [0.152mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10443.838mil|Location2.X=10464.773mil|Location1.Y=4966.848mil|Location2.Y=4987.783mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\joshg\OneDrive\Academia\UCONN\Courses\ECE 4095\Project 1\altium\ECE4095- Project 1- Speaker - V2\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10443.838mil|Location2.X=10464.773mil|Location1.Y=4966.848mil|Location2.Y=4987.783mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.152mm &lt; 0.5mm) Between Pad U2-7(76.858mm,14.613mm) on Top Layer And Pad U2-8(76.858mm,13.343mm) on Top Layer [Top Solder] Mask Sliver [0.152mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
